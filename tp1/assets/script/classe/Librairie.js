@@ -18,12 +18,6 @@ export class Librairie {
         this.filtrerLivres.bind(this)
       );
     }
-
-    // this._ELPanneauLivre = document.querySelectorAll("[data-panneau]");
-    // for (let i = 0; i < this._ELPanneauLivre.length; i++) {
-    //   new Livre(this._ELPanneauLivre[i]);
-    //   console.log(this._ELPanneauLivre[i]);
-    // }
   }
 
   injecterLivre() {

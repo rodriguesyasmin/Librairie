@@ -3,7 +3,6 @@ import { livres } from "../livres.js";
 export class Livre {
   constructor(el) {
     this._elLivre = el;
-    this._conteneurLivre = document.querySelector("[data-detail]");
     this.init();
   }
   init() {
@@ -27,23 +26,24 @@ export class Livre {
    * Fonction qui sert à injecter un popup.
    */
   popUp(livre) {
-    console.log(livre);
-    console.log('dans popup');
-    this._conteneurLivre.innerHTML = "";
-    this._conteneurLivre.classList.remove("invisible");
-    this._conteneurLivre.classList.add("visible");
+    let dom = `<div class="fond-popup">
+      <div data-panneau data-modal class="visible">
+                  <div> Fermer X</div>
+                  <img src="${livre.image}" alt="">
+                  <h2>${livre.titre}</h2>
+                  <h3>${livre.auteur}</h3>
+                  <small>${livre.editeur} </small>
+                  <small>${livre.pages} pages</small>
+                  <p>${livre.description} </p>
+                </div>
+    </div>`;
 
-    let livreHTML = `<div data-panneau class="visible">
-    <div class="close">X</div>
-            <img   src="${livre.image}" alt="">
-            <h2>${livre.titre}</h2>
-            <h3>${livre.auteur}</h3>
-            <small>${livre.editeur} </small>
-            <small>${livre.pages} pages</small>
-            <p>${livre.description} </p>      
+    document.body.insertAdjacentHTML("beforeend", dom);
 
-        </div>`;
+    let elModal = document.querySelector("[data-modal]");
 
-    this._conteneurLivre.insertAdjacentHTML("beforeend", livreHTML);
+    elModal.addEventListener("click", function () {
+      elModal.remove();
+    });
   }
 }
